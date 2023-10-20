@@ -1,0 +1,49 @@
+﻿@model DataAccessLayer.models.Payroll
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2 style="color: #C61A2180;">Detalle</h2>
+
+<div>
+    <h4>Nomina</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursWorked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursWorked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

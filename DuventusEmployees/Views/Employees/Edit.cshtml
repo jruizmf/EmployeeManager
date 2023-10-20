@@ -1,0 +1,103 @@
+﻿@model DataAccessLayer.models.Employee
+
+@{
+    ViewBag.Title = "Modificar";
+}
+
+<h2 color: #C61A2180;>Modificar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4 color: #C61A2180;>Employee</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Secondlastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Secondlastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Secondlastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.EmployeeTypeId, "EmployeeTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmployeeTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.RFC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RFC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RFC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Birthdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.SalaryPerHour, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalaryPerHour, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalaryPerHour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            @Html.LabelFor(model => model.HoursWorked, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoursWorked, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoursWorked, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-1">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="submit" value="Modificar" class="btn btn-default" />
+                </div>
+                <div class="col-md-offset-2 col-md-4">
+                    @Html.ActionLink("Listado", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

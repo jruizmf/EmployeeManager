@@ -1,0 +1,82 @@
+﻿@model DataAccessLayer.models.Employee
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2 color: #C61A2180;>Detalles</h2>
+
+<div>
+    <h4 color: #C61A2180;>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Secondlastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Secondlastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RFC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RFC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryPerHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryPerHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursWorked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursWorked)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Listado", "Index")
+</p>

@@ -1,0 +1,118 @@
+﻿@model DataAccessLayer.models.Payroll
+
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<h2>Agregar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="color: #C61A2180;">Nomina @Html.Raw(@ViewBag.EmployeeName)</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 py-1">
+            @Html.DropDownList("EmployeeId", null, "Seleccionar empleado", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group py-1">
+        @Html.LabelFor(model => model.Week, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group py-1">
+        @Html.LabelFor(model => model.HoursWorked, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HoursWorked, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HoursWorked, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group py-1">
+        @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.total, new { disabled = "disabled", @readonly = "readonly", htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group py-1">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+            <div class="col-md-offset-2 col-md-4">
+                @Html.ActionLink("Volver", "Index", new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+<div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var EmployeeInput = $("#EmployeeId");
+            var total = $('#total');
+            total.val(0);
+            var input2 = document.getElementById('total');
+            var hours = $("#HoursWorked")
+            var hourValue = 0;
+
+            var EmployeeValue = EmployeeInput.val();
+
+            if (hours.val() != "") {
+                hourValue = hours.val()
+            }
+
+            EmployeeInput.on('change', function () {
+                EmployeeValue = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/api/Payrolls/CalculateTotal/' + $(this).val() + '/' + hourValue,
+                    success: function (data) {
+                        console.log(data)
+                        input2.value = data;
+                    },
+                    error: function (xhr, ajaxOption, thorwnError) {
+                        console.log("Error")
+                    },
+                });
+            });
+
+            hours.on('change', function () {
+                hourValue = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/api/Payrolls/CalculateTotal/' + EmployeeValue + '/' + hourValue,
+                    success: function (data) {
+                        console.log(data)
+                        input2.value = data;
+                    },
+                    error: function (xhr, ajaxOption, thorwnError) {
+                        console.log("Error")
+                    },
+                });
+            });
+        });
+    </script>
+}
